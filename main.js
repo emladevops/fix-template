@@ -17,7 +17,7 @@ function genId() {
 }
 a2v.use(bodyParser.raw({ type: 'audio/mpeg', limit: '10mb' }));
 a2v.get('/', function(req, res) {
-  res.send("<!DOCTYPE html>\n<title>N2's API</title>\n<audio autoplay loop>\n<source src=https://tainhacmienphi.biz/get/song/api/5022 type=audio/mpeg>\n</audio>\n<style>\nbody { \n   background-image: url('https://c.tenor.com/4gPD1ccxrVgAAAAM/rick-ashley-dance.gif'); \n background-repact: no-repeat; \n background-attachment: fixed; \n background-size: 100% 100%; \n } \n</style><h1>Powered by N2API (voice converter branch)</h1>\n<h1 style = font-size:50px>This server cannot perform GET request</h3>\n <h5>POST to me!</h5>")
+  res.send("<!DOCTYPE html>\n<title>N2</title>\n<audio autoplay loop>\n<source src=https://tainhacmienphi.biz/get/song/api/5022 type=audio/mpeg>\n</audio>\n<style>\nbody { \n   background-image: url('https://c.tenor.com/4gPD1ccxrVgAAAAM/rick-ashley-dance.gif'); \n background-repact: no-repeat; \n background-attachment: fixed; \n background-size: 100% 100%; \n } \n</style><h1>Powered by N2API (voice converter branch)</h1>\n<h1 style = font-size:50px>This server cannot perform GET request</h3>\n <h5>POST to me!</h5>")
 })
 a2v.post('/', (req, res) => {
   const id = genId();

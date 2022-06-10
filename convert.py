@@ -1,6 +1,6 @@
 import sys
 import os
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/home/nodejs/auth.json"
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/home/api/n2api/auth.json"
 #os.system("export GOOGLE_APPLICATION_CREDENTIALS=/home/nodejs/auth.json")
 def transcribe_file(speech_file):
     """Transcribe the given audio file asynchronously."""

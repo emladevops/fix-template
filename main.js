@@ -11,7 +11,13 @@ const bodyParser = require('body-parser')
 var { spawn } = require('child_process');
 const { resolve } = require('path');
 const colors = require('colors');
-const port = 8080;
+// Used for cryptolens
+const Key = require('cryptolens').Key;
+const Helpers = require('cryptolens').Helpers;
+
+
+
+
 function genId() {
   var uniqueid = crypto.randomBytes(20).toString('hex')
   return uniqueid
@@ -54,7 +60,18 @@ license.get('/', function(req, res) {
   res.send("<!DOCTYPE html>\n<h1>Powered by N2API (license branch)</h1>\n<h3>This server isn't used to receive GET request</h3> ")
 })
 
+license.post('/', (req, res) => {
+  var RSAPubKey = "<RSAKeyValue><Modulus>pXTUjbPnZtEQNU05QJZ91FL+25l0MXOBnzZ2F07cT2vyY9Zi0ElHvBiCw07RSIHDFj1V0b7a/oR1E3cNsQoum5J57iovQbUdk3KDma4M8gtjYqUsTy/Ag1apEk8XS3f+9Q+GsMr5qt7fgpav2PsyF4Lxb7pYzU3vwpGmLDKif+/ZBrtDR/1pA4M22kf9jszagJKhh/q12B6kp8mYstFtsduMw3akdQ0cyxygLrwXILtqTxuz1uEC7bsTKR1nG3w7oj3Fv0SWfkN7e/HrTqx0A0LylWll+K0Jhq7SvJvhaPQm5MI8/V43v4gJpZXXPsyKMida1IJldVC5Wk96zs0IPw==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>";
+  var token = "WyI0NzcxMjY1IiwiRE1yakovVnBpQXpLOUhIQ0hWY0ZjRDhJUVVZQmQrRTltSlR2SkVwNiJd";
 
+  var result = Key.Activate(token=token, RSAPubKey, ProductId=12264, Key=req.body.key, MachineCode=Helpers.GetMachineCode());
+
+  fs=require('fs')
+  fs.readFile('validLicense.py', 'utf8', function(err, data) {
+    if (err) { return console.log(err); }
+    res.send(data);
+  })
+});
 
 a2v.listen(3000)
 license.listen(2999)
